@@ -1,0 +1,47 @@
+package com.training.portal.persistence.mapper;
+
+import com.training.portal.dto.UserModel;
+import com.training.portal.persistence.entity.UserEntity;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2025-12-22T20:06:52-0500",
+    comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-9.2.1.jar, environment: Java 17.0.8 (Oracle Corporation)"
+)
+@Component
+public class UserMapperImpl implements UserMapper {
+
+    @Override
+    public UserModel toModel(UserEntity userEntity) {
+        if ( userEntity == null ) {
+            return null;
+        }
+
+        UserModel.UserModelBuilder userModel = UserModel.builder();
+
+        userModel.email( userEntity.getEmail() );
+        userModel.passwordHash( userEntity.getPasswordHash() );
+        userModel.fullName( userEntity.getFullName() );
+        userModel.role( userEntity.getRole() );
+
+        return userModel.build();
+    }
+
+    @Override
+    public UserEntity toEntity(UserModel userModel) {
+        if ( userModel == null ) {
+            return null;
+        }
+
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setEmail( userModel.getEmail() );
+        userEntity.setPasswordHash( userModel.getPasswordHash() );
+        userEntity.setFullName( userModel.getFullName() );
+        userEntity.setRole( userModel.getRole() );
+
+        return userEntity;
+    }
+}
