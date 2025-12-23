@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-12-22T21:09:10-0500",
+    date = "2025-12-22T23:05:35-0500",
     comments = "version: 1.5.5.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-9.2.1.jar, environment: Java 17.0.8 (Oracle Corporation)"
 )
 @Component
@@ -38,15 +38,15 @@ public class CourseMapperImpl implements CourseMapper {
             return null;
         }
 
-        CourseEntity courseEntity = new CourseEntity();
+        CourseEntity.CourseEntityBuilder courseEntity = CourseEntity.builder();
 
-        courseEntity.setId( courseModel.getId() );
-        courseEntity.setTitle( courseModel.getTitle() );
-        courseEntity.setModule( courseModel.getModule() );
-        courseEntity.setDescription( courseModel.getDescription() );
-        courseEntity.setDuration( courseModel.getDuration() );
+        courseEntity.id( courseModel.getId() );
+        courseEntity.title( courseModel.getTitle() );
+        courseEntity.module( courseModel.getModule() );
+        courseEntity.description( courseModel.getDescription() );
+        courseEntity.duration( courseModel.getDuration() );
 
-        return courseEntity;
+        return courseEntity.build();
     }
 
     @Override
