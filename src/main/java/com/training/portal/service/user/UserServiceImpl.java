@@ -1,10 +1,10 @@
 package com.training.portal.service.user;
 
-import com.training.portal.dto.*;
-import com.training.portal.dto.rest.LoginRequest;
-import com.training.portal.dto.rest.LoginResponse;
-import com.training.portal.dto.rest.RegisterRequest;
-import com.training.portal.dto.rest.SimpleResponse;
+import com.training.portal.model.*;
+import com.training.portal.model.rest.LoginRequest;
+import com.training.portal.model.rest.LoginResponse;
+import com.training.portal.model.rest.RegisterRequest;
+import com.training.portal.model.rest.SimpleResponse;
 import com.training.portal.persistence.entity.UserEntity;
 import com.training.portal.persistence.mapper.UserMapper;
 import com.training.portal.persistence.repository.UserRepository;
@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -80,5 +81,23 @@ public class UserServiceImpl implements UserService{
         log.info("Registro exitoso");
 
         return SimpleResponse.builder().message(Constants.SUCCESFULLY).build();
+    }
+
+    @Override
+    @Transactional
+    public UserModel deleteById(Long id) {
+
+        UserEntity existing = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        userRepository.deleteById(id);
+
+        return userMapper.toModel(existing);
+    }
+
+    @Override
+    public List<UserModel> findAll() {
+        log.info("inicio servicio consulta de todos los cursos");
+        return userMapper.toModels(userRepository.findAll());
     }
 }

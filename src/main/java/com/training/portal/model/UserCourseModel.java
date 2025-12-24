@@ -1,4 +1,4 @@
-package com.training.portal.dto.rest;
+package com.training.portal.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserCourseResponse {
+
+public class UserCourseModel {
 
     private Long id;
-    private String module;
-    private String title;
-    private String description;
-    private int duration;
+    private Long userId;
+    private Long courseId;
     private String status;
+
 }

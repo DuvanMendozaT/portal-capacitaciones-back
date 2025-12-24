@@ -1,4 +1,4 @@
-package com.training.portal.dto.rest;
+package com.training.portal.model.rest;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

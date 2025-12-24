@@ -1,6 +1,5 @@
-package com.training.portal.dto;
+package com.training.portal.model;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 

@@ -1,6 +1,6 @@
 package com.training.portal.persistence.mapper;
 
-import com.training.portal.dto.UserModel;
+import com.training.portal.model.UserModel;
 import com.training.portal.persistence.entity.UserEntity;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;

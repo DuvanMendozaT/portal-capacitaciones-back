@@ -1,4 +1,5 @@
-package com.training.portal.dto.rest;
+package com.training.portal.model;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,11 +9,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class LoginResponse {
+
+public class CourseModel {
 
     private Long id;
-    private String token;
-    private String email;
-    private String fullName;
-    private String role;
+
+    private String module;
+
+    private String title;
+
+    private String description;
+
+    private int duration;
+
 }
