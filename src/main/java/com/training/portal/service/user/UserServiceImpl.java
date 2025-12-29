@@ -8,6 +8,7 @@ import com.training.portal.model.rest.SimpleResponse;
 import com.training.portal.persistence.entity.UserEntity;
 import com.training.portal.persistence.mapper.UserMapper;
 import com.training.portal.persistence.repository.UserRepository;
+import com.training.portal.service.jwt.JwtService;
 import com.training.portal.util.Constants;
 import jakarta.transaction.Transactional;
 import lombok.extern.log4j.Log4j2;
@@ -17,8 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 @Log4j2
@@ -33,10 +32,12 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserMapper userMapper;
 
-    private final Map<String, String> activeTokens = new ConcurrentHashMap<>();
+    @Autowired
+    private JwtService jwtService;
+
     @Override
     @Transactional
-    public LoginResponse login(LoginRequest loginRequest) {
+    public String login(LoginRequest loginRequest) {
         log.info("inicio servicio Login");
 
         UserEntity userEntity = userRepository.findByEmail(loginRequest.getEmail())
@@ -51,15 +52,15 @@ public class UserServiceImpl implements UserService{
             throw new IllegalArgumentException("Credenciales inválidas");
         }
 
-        String token = UUID.randomUUID().toString();
-        activeTokens.put(token, userEntity.getEmail());
 
-        return new LoginResponse(
-                userEntity.getId(),
-                token,
+        return jwtService.generateToken(
                 userEntity.getEmail(),
-                userEntity.getFullName(),
-                userEntity.getRole()
+                Map.of(
+                        "id", userEntity.getId(),
+                        "email", userEntity.getEmail(),
+                        "fullName", userEntity.getFullName(),
+                        "role", userEntity.getRole()
+                )
         );
     }
 

@@ -27,7 +27,7 @@ public class AuthController implements AuthControllerDoc {
     private UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
         return ResponseEntity.ok(userService.login(loginRequest));
     }
     @PostMapping("/register")

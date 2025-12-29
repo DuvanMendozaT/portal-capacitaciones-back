@@ -9,7 +9,7 @@ import com.training.portal.model.rest.SimpleResponse;
 import java.util.List;
 
 public interface UserService {
-    LoginResponse login(LoginRequest loginRequest);
+    String login(LoginRequest loginRequest);
 
     SimpleResponse register(RegisterRequest registerRequest);
 

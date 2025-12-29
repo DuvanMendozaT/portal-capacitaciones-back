@@ -33,7 +33,7 @@ public interface AuthControllerDoc {
             @ApiResponse(responseCode = "401", description = "Credenciales inválidas"),
             @ApiResponse(responseCode = "500", description = "Error interno del servidor")
     })
-    ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest);
+    ResponseEntity<String> login(@RequestBody LoginRequest loginRequest);
 
     @Operation(
             summary = "Registrar usuario",
