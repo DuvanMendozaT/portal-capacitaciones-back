@@ -11,27 +11,21 @@ import com.training.portal.persistence.repository.UserCoursesRepository;
 import com.training.portal.persistence.repository.UserRepository;
 import com.training.portal.util.Constants;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 @Log4j2
+@RequiredArgsConstructor
 public class UserCourseServiceImpl implements UserCourseService{
 
-    @Autowired
-    private UserCoursesRepository userCoursesRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private CourseRepository courseRepository;
-
-    @Autowired
-    private UserCourseMapper userCourseMapper;
+    private final UserCoursesRepository userCoursesRepository;
+    private final UserRepository userRepository;
+    private final CourseRepository courseRepository;
+    private final UserCourseMapper userCourseMapper;
 
     @Override
     @Transactional

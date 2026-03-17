@@ -2,7 +2,6 @@ package com.training.portal.service.user;
 
 import com.training.portal.model.*;
 import com.training.portal.model.rest.LoginRequest;
-import com.training.portal.model.rest.LoginResponse;
 import com.training.portal.model.rest.RegisterRequest;
 import com.training.portal.model.rest.SimpleResponse;
 import com.training.portal.persistence.entity.UserEntity;
@@ -11,8 +10,8 @@ import com.training.portal.persistence.repository.UserRepository;
 import com.training.portal.service.jwt.JwtService;
 import com.training.portal.util.Constants;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,19 +20,13 @@ import java.util.Map;
 
 @Service
 @Log4j2
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private UserMapper userMapper;
-
-    @Autowired
-    private JwtService jwtService;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
+    private final JwtService jwtService;
 
     @Override
     @Transactional

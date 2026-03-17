@@ -5,7 +5,7 @@ import com.training.portal.model.UserCourseModel;
 import com.training.portal.model.rest.UserCourseRequest;
 import com.training.portal.service.usercourse.UserCourseService;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.*;
 )
 @RestController
 @RequestMapping("/usercourse")
+@RequiredArgsConstructor
 public class UserCourseController implements UserCourseControllerDoc {
 
-    @Autowired
-    private UserCourseService userCourseService;
+    private final UserCourseService userCourseService;
 
     @PostMapping("/create")
     public ResponseEntity<UserCourseModel> create(@RequestBody UserCourseRequest userCourseRequest) {

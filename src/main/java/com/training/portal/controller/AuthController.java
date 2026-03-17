@@ -3,13 +3,12 @@ package com.training.portal.controller;
 import com.training.portal.controller.doc.AuthControllerDoc;
 import com.training.portal.model.UserModel;
 import com.training.portal.model.rest.LoginRequest;
-import com.training.portal.model.rest.LoginResponse;
 import com.training.portal.model.rest.RegisterRequest;
 import com.training.portal.model.rest.SimpleResponse;
 import com.training.portal.service.user.UserService;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,10 +20,10 @@ import java.util.List;
 )
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 public class AuthController implements AuthControllerDoc {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {

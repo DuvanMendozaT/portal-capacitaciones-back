@@ -22,7 +22,6 @@ public class JwtServiceImpl  implements JwtService{
     private long expirationMs;
 
     private Key signingKey() {
-        // HS256 => secret >= 32 chars recomendado
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 

@@ -8,23 +8,20 @@ import com.training.portal.persistence.mapper.CourseMapper;
 import com.training.portal.persistence.repository.CourseRepository;
 import com.training.portal.persistence.repository.UserCoursesRepository;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @Log4j2
+@RequiredArgsConstructor
 public class CourseServiceImpl implements CourseService {
 
-    @Autowired
-    private CourseRepository courseRepository;
-    @Autowired
-    private UserCoursesRepository userCoursesRepository;
-
-    @Autowired
-    private CourseMapper courseMapper;
+    private final CourseRepository courseRepository;
+    private final UserCoursesRepository userCoursesRepository;
+    private final CourseMapper courseMapper;
 
 
     @Override
